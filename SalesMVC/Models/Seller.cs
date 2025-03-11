@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesMVC.Models
 {
     public class Seller
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "{0} Requered")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage ="{0} size betwen {2} and {1}")]
         public string Name { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "{0} Requered")]
         public string Email { get; set; }
+        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "{0} Requered")]
         public DateTime BirthDate { get; set; }
+        [Display(Name = "Base Salary")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [Required(ErrorMessage = "{0} Requered")]
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
